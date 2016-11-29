@@ -7,9 +7,16 @@
 
 void limpa_linha(char *linha){
 	char *tmp = linha;
-	while (isspace(*linha)) linha++; 
-	memmove(tmp, linha, TAM_MAX_LINHA - (linha - tmp));
-    
+	while (isspace(*linha)) linha++;
+	if (*linha == '#')
+    *tmp= '\0';
+    else 
+    memmove(tmp, linha, TAM_MAX_LINHA - (linha - tmp));
+    for (; *tmp; tmp++)
+    if (*tmp== '#'){
+        *tmp++ = '\n';
+        *tmp = '\0'; 
+    }
 }
 
 int main(int argc, char *argv[])

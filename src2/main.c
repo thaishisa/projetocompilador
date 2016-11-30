@@ -27,8 +27,9 @@ char linha[TAM_MAX_LINHA];
 int i=1;
 while (fgets(linha, TAM_MAX_LINHA, fin) ){
 	limpa_linha (linha);
-	fprintf(stdout, "%5d: %s", i, linha);
-	i++;
+	if (*linha) {
+	fprintf(stdout, "%5d: %s", i++, linha);
+}
 }
 fclose(fin);
 }

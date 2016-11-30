@@ -12,8 +12,8 @@ void limpa_linha(char *linha){
     *tmp= '\0';
     else 
     memmove(tmp, linha, TAM_MAX_LINHA - (linha - tmp));
-    for (; *tmp; tmp++)
-    if (*tmp== '#'){
+    for (;*tmp; tmp++)
+    if (*tmp== '#') {
         *tmp++ = '\n';
         *tmp = '\0'; 
     }
@@ -22,6 +22,7 @@ void limpa_linha(char *linha){
 int main(int argc, char *argv[])
 {
 if (argc!=2){
+
 	fprintf(stderr,"Sintaxe: main <arquivo>\n");
 	exit(EXIT_FAILURE);
 }
@@ -34,8 +35,9 @@ char linha[TAM_MAX_LINHA];
 int i=1;
 while (fgets(linha, TAM_MAX_LINHA, fin) ){
 	limpa_linha (linha);
-	fprintf(stdout, "%5d: %s", i, linha);
-	i++;
+    if (*linha) {
+	fprintf(stdout, "%5d: %s", i++, linha);
 }
+} 
 fclose(fin);
 }
